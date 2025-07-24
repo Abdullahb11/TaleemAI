@@ -5,69 +5,96 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>TaleemBoard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaleemBoard - Home</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .class-box {
+      transition: all 0.3s ease;
+    }
+    .class-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+  </style>
 </head>
-<body class="bg-[#f2f2f2] flex items-center justify-center min-h-screen">
-
-  <div class="bg-pink-100 p-6 rounded-xl w-full max-w-4xl text-center space-y-10">
-
+<body class="bg-gradient-to-br from-purple-50 to-pink-100 min-h-screen">
+  <div class="container mx-auto px-4 py-8">
     <!-- Top Bar -->
-    <div class="flex justify-between items-center">
-      <button class="bg-white text-black italic px-6 py-2 rounded-full text-lg font-medium shadow">
-        Taleemai
-      </button>
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-12">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <button class="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-2 rounded-full text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
+          Taleemai
+        </button>
 
-      <!-- Logo -->
-      <div class="bg-white px-6 py-3 rounded-full shadow">
-        <h1 class="text-3xl font-serif tracking-wide">
-          <span class="text-purple-700 italic font-bold">TALEEM</span>
-          <span class="text-red-500 italic font-bold">BOARD</span>
-        </h1>
-        <div class="w-full h-[2px] bg-black mt-1"></div>
+        <div class="text-center">
+          <h1 class="text-4xl font-bold tracking-wide mb-2">
+            <span class="text-purple-700 italic">TALEEM</span>
+            <span class="text-red-500 italic">BOARD</span>
+          </h1>
+          <div class="w-full h-[2px] bg-gradient-to-r from-purple-500 to-red-500"></div>
+        </div>
+
+        <button id="signout-btn" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-full text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
+          Sign Out
+        </button>
+      </div>
+    </div>
+
+    <!-- Welcome Message -->
+    <div class="text-center mb-12">
+      <h2 id="name" class="text-3xl font-semibold text-gray-800 bg-white inline-block px-8 py-4 rounded-full shadow-md">
+        Welcome to TaleemBoard
+      </h2>
+    </div>
+
+    <!-- Class Boxes Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <!-- Class 9 -->
+      <div id="9" class="class-box bg-white rounded-2xl p-1 cursor-pointer">
+        <div class="bg-gradient-to-br from-rose-400 to-rose-500 rounded-xl p-8 h-full">
+          <div class="bg-white/10 rounded-lg p-6 backdrop-blur-sm border border-white/20">
+            <h3 class="text-3xl font-bold text-white text-center">Class 9</h3>
+            <p class="text-white/80 text-center mt-2">Start your journey</p>
+          </div>
+        </div>
       </div>
 
-      <button
-      id="signout-btn"
-      class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow transition"
-    >
-      Sign Out
-    </button>
-    </div>
+      <!-- Class 10 -->
+      <div id="10" class="class-box bg-white rounded-2xl p-1 cursor-pointer">
+        <div class="bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl p-8 h-full">
+          <div class="bg-white/10 rounded-lg p-6 backdrop-blur-sm border border-white/20">
+            <h3 class="text-3xl font-bold text-white text-center">Class 10</h3>
+            <p class="text-white/80 text-center mt-2">Continue learning</p>
+          </div>
+        </div>
+      </div>
 
-   <!-- Class Boxes Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-10 justify-items-center bg-pink-200 p-10 rounded-3xl">
+      <!-- Class 11 -->
+      <div id="11" class="class-box bg-white rounded-2xl p-1 cursor-pointer">
+        <div class="bg-gradient-to-br from-purple-400 to-purple-500 rounded-xl p-8 h-full">
+          <div class="bg-white/10 rounded-lg p-6 backdrop-blur-sm border border-white/20">
+            <h3 class="text-3xl font-bold text-white text-center">Class 11</h3>
+            <p class="text-white/80 text-center mt-2">Advanced studies</p>
+          </div>
+        </div>
+      </div>
 
-  <!-- Class 9 -->
-  <div id="9" class="bg-rose-400 rounded-2xl w-48 h-28 flex items-center justify-center shadow-lg border-4 border-rose-300">
-    <div class="w-full h-full rounded-xl border-2 border-rose-800 flex items-center justify-center">
-      <span class="text-xl font-serif italic">Class 9</span>
-    </div>
-  </div>
-
-  <!-- Class 10 -->
-  <div id="10" class="bg-rose-400 rounded-2xl w-48 h-28 flex items-center justify-center shadow-lg border-4 border-rose-300">
-    <div class="w-full h-full rounded-xl border-2 border-rose-800 flex items-center justify-center">
-      <span class="text-xl font-serif italic">Class 10</span>
-    </div>
-  </div>
-
-  <!-- Class 11 -->
-  <div id="11" class="bg-rose-400 rounded-2xl w-48 h-28 flex items-center justify-center shadow-lg border-4 border-rose-300">
-    <div class="w-full h-full rounded-xl border-2 border-rose-800 flex items-center justify-center">
-      <span class="text-xl font-serif italic">Class 11</span>
-    </div>
-  </div>
-
-  <!-- Class 12 -->
-  <div id="12" class="bg-rose-400 rounded-2xl w-48 h-28 flex items-center justify-center shadow-lg border-4 border-rose-300">
-    <div class="w-full h-full rounded-xl border-2 border-rose-800 flex items-center justify-center">
-      <span class="text-xl font-serif italic">Class 12</span>
+      <!-- Class 12 -->
+      <div id="12" class="class-box bg-white rounded-2xl p-1 cursor-pointer">
+        <div class="bg-gradient-to-br from-green-400 to-green-500 rounded-xl p-8 h-full">
+          <div class="bg-white/10 rounded-lg p-6 backdrop-blur-sm border border-white/20">
+            <h3 class="text-3xl font-bold text-white text-center">Class 12</h3>
+            <p class="text-white/80 text-center mt-2">Final year</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-</div>
-
 
   <script type="module" src="script.js"></script>
   <script type="module" src="checkauth.js"></script>
