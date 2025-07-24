@@ -2,75 +2,67 @@
 import {auth} from "./script.js"
 import { onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
+// List of pages that require authentication
+const protectedPages = [
+  'home.html',
+  'subjects.html',
+  'chapters.html',
+  'questions.html',
+  'authonly.html'
+];
 
+const body = document.body;
 
+onAuthStateChanged(auth, (user) => {
+  const currentPage = window.location.pathname.split('/').pop();
+  
+  if (user) {
+    // ✅ User is signed in
+    if (currentPage === 'index.html' || currentPage === 'signin.html') {
+      // Redirect to home if trying to access login/signup pages while logged in
+      window.location.href = 'home.html';
+      return;
+    }
 
-  const body = document.body;
+    // Show user name if the element exists
+    const nameElement = document.getElementById("name");
+    if (nameElement) {
+      nameElement.innerText = "Welcome " + (user.displayName || "Someone with no name");
+    }
 
+  } else {
+    // ❌ Not signed in
+    if (protectedPages.includes(currentPage)) {
+      // Create overlay for unauthorized access
+      const coverPage = document.createElement("div");
+      coverPage.style.width = "100%";
+      coverPage.style.height = "100%";
+      coverPage.style.zIndex = "10000";
+      coverPage.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+      coverPage.style.display = "flex";
+      coverPage.style.justifyContent = "center";
+      coverPage.style.alignItems = "center";
+      coverPage.style.position = "fixed";
+      coverPage.style.top = "0";
+      coverPage.style.left = "0";
 
-        const loader = document.getElementById("auth-loader");
-        const content = document.getElementById("content");
+      const message = document.createElement("div");
+      message.innerHTML = "Please sign in to access this page";
+      message.style.color = "white";
+      message.style.padding = "20px 40px";
+      message.style.backgroundColor = "#FF4444";
+      message.style.borderRadius = "8px";
+      message.style.cursor = "pointer";
+      message.style.fontFamily = "serif";
+      message.style.fontSize = "1.2rem";
+      message.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
+      coverPage.appendChild(message);
+      body.appendChild(coverPage);
 
-
-
-        loader.style.display = "none";
-        if(window.Location.href=="authonly.html")
-            content.style.display = "flex";
-
-        const name=document.getElementById("name")
-        if(user.displayName)
-            name.innerText="Welcome "+user.displayName;
-        else
-            name.innerText="Welcome Someone with no name";
-        
-
-    } else {
-      // ❌ Not signed in
-
-
-
-        const hello = document.createElement("div");
-        hello.innerHTML = "Wassup";
-        hello.style.width = "fit-content";
-        hello.style.height = "5vh";
-        hello.style.backgroundColor = "red";
-        hello.style.display = "flex";
-        hello.style.justifyContent = "center";
-        hello.style.alignItems = "center";
-        hello.style.border = "2px solid black";
-        hello.style.padding="2px"
-        hello.style.cursor = "pointer"; // Optional, gives click hint
-
-
-
-
-
-
-
-
-        const coverPage=document.createElement("div")
-        coverPage.style.width="100%"
-        coverPage.style.height="100%"
-        coverPage.style.zIndex="10000"
-        coverPage.style.backgroundColor="black"
-        coverPage.style.display = "flex";
-        coverPage.style.justifyContent = "center";
-        coverPage.style.alignItems = "center";
-        coverPage.style.position = "fixed";
-        coverPage.style.top = "0";
-        coverPage.style.left = "0";
-
-
-        hello.innerHTML = "You are not authorized to enter buddy , turn around";
-        coverPage.appendChild(hello)
-        body.appendChild(coverPage);
-
-        coverPage.addEventListener("click", () => {
+      coverPage.addEventListener("click", () => {
         window.location.href = "signin.html";
       });
-
     }
-  });
+  }
+});
