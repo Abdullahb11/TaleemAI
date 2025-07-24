@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TaleemBoard - Chapters</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .chapter-box {
+      @apply bg-blue-300 rounded-2xl w-32 h-24 flex items-center justify-center shadow-lg border-4 border-blue-200 cursor-pointer transition-transform hover:scale-105;
+    }
+    .chapter-box > div {
+      @apply w-full h-full rounded-xl border-2 border-blue-800 flex items-center justify-center;
+    }
+    .chapter-box span {
+      @apply text-lg font-serif italic;
+    }
+  </style>
+</head>
+<body class="bg-[#f2f2f2] flex items-center justify-center min-h-screen">
+
+  <div class="bg-pink-100 p-6 rounded-xl w-full max-w-5xl text-center space-y-10">
+
+    <!-- Top Bar -->
+    <div class="flex justify-between items-center">
+      <button class="bg-white text-black italic px-6 py-2 rounded-full text-lg font-medium shadow">
+        Taleemai
+      </button>
+
+      <div class="bg-white px-6 py-3 rounded-full shadow">
+        <h1 class="text-3xl font-serif tracking-wide">
+          <span class="text-purple-700 italic font-bold">TALEEM</span>
+          <span class="text-red-500 italic font-bold">BOARD</span>
+        </h1>
+        <div class="w-full h-[2px] bg-black mt-1"></div>
+      </div>
+
+      <button class="bg-white text-black italic px-6 py-2 rounded-full text-lg font-medium shadow">
+        Sign Out
+      </button>
+    </div>
+
+    <!-- Chapters Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 justify-items-center bg-pink-200 p-10 rounded-3xl">
+
+      <!-- Chapter Boxes -->
+      <div id="1" class="chapter-box"><div><span>Chapter 1</span></div></div>
+      <div id="2" class="chapter-box"><div><span>Chapter 2</span></div></div>
+      <div id="3" class="chapter-box"><div><span>Chapter 3</span></div></div>
+      <div id="4" class="chapter-box"><div><span>Chapter 4</span></div></div>
+      <div id="5" class="chapter-box"><div><span>Chapter 5</span></div></div>
+      <div id="6" class="chapter-box"><div><span>Chapter 6</span></div></div>
+      <div id="7" class="chapter-box"><div><span>Chapter 7</span></div></div>
+      <div id="8" class="chapter-box"><div><span>Chapter 8</span></div></div>
+      <div id="9" class="chapter-box"><div><span>Chapter 9</span></div></div>
+      <div id="10" class="chapter-box"><div><span>Chapter 10</span></div></div>
+
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+  <script type="module" src="checkauth.js"></script>
+</body>
+</html>

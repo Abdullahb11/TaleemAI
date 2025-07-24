@@ -1,0 +1,72 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TaleemBoard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#f2f2f2] flex items-center justify-center min-h-screen">
+
+  <div class="bg-pink-100 p-6 rounded-xl w-full max-w-4xl text-center space-y-10">
+
+    <!-- Top Bar -->
+    <div class="flex justify-between items-center">
+      <button class="bg-white text-black italic px-6 py-2 rounded-full text-lg font-medium shadow">
+        Taleemai
+      </button>
+
+      <!-- Logo -->
+      <div class="bg-white px-6 py-3 rounded-full shadow">
+        <h1 class="text-3xl font-serif tracking-wide">
+          <span class="text-purple-700 italic font-bold">TALEEM</span>
+          <span class="text-red-500 italic font-bold">BOARD</span>
+        </h1>
+        <div class="w-full h-[2px] bg-black mt-1"></div>
+      </div>
+
+      <button class="bg-white text-black italic px-6 py-2 rounded-full text-lg font-medium shadow">
+        Sign Out
+      </button>
+    </div>
+
+   <!-- Class Boxes Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-10 justify-items-center bg-pink-200 p-10 rounded-3xl">
+
+  <!-- Class 9 -->
+  <div id="9" class="bg-rose-400 rounded-2xl w-48 h-28 flex items-center justify-center shadow-lg border-4 border-rose-300">
+    <div class="w-full h-full rounded-xl border-2 border-rose-800 flex items-center justify-center">
+      <span class="text-xl font-serif italic">Class 9</span>
+    </div>
+  </div>
+
+  <!-- Class 10 -->
+  <div id="10" class="bg-rose-400 rounded-2xl w-48 h-28 flex items-center justify-center shadow-lg border-4 border-rose-300">
+    <div class="w-full h-full rounded-xl border-2 border-rose-800 flex items-center justify-center">
+      <span class="text-xl font-serif italic">Class 10</span>
+    </div>
+  </div>
+
+  <!-- Class 11 -->
+  <div id="11" class="bg-rose-400 rounded-2xl w-48 h-28 flex items-center justify-center shadow-lg border-4 border-rose-300">
+    <div class="w-full h-full rounded-xl border-2 border-rose-800 flex items-center justify-center">
+      <span class="text-xl font-serif italic">Class 11</span>
+    </div>
+  </div>
+
+  <!-- Class 12 -->
+  <div id="12" class="bg-rose-400 rounded-2xl w-48 h-28 flex items-center justify-center shadow-lg border-4 border-rose-300">
+    <div class="w-full h-full rounded-xl border-2 border-rose-800 flex items-center justify-center">
+      <span class="text-xl font-serif italic">Class 12</span>
+    </div>
+  </div>
+
+</div>
+
+
+  <script type="module" src="script.js"></script>
+  <script type="module" src="checkauth.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="pt-20 bg-gray-100 min-h-screen flex justify-center items-center h-full">
+
+
+
+
+   <div id="auth-loader" style="
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    z-index: 9999;">
+    Checking authorization...
+  </div>
+
+
+
+ <div id="content">
+
+<header class="fixed top-0 left-0 w-full z-50 bg-white shadow-md py-4 px-6 flex justify-between items-center">
+  <h1 class="text-2xl font-bold text-blue-600">Welcome Home</h1>
+  <div class="flex gap-4 items-center">
+    <a href="authonly.html" class="text-blue-600 hover:underline">Auth Only Page</a>
+    <a href="signin.html" class="text-blue-600 hover:underline">Sign In Page</a>
+    <button
+      id="signout-btn"
+      class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow transition"
+    >
+      Sign Out
+    </button>
+  </div>
+</header>
+</div>
+    
+  <script type="module" src="checkauth.js"></script>
+</body>
+</html>
