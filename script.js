@@ -119,28 +119,12 @@ googleSignin.addEventListener("click", () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 async function uploadData() {
   try {
     const shortQuestions = sqs;  // Define sqs somewhere above
     const Mcqs = mcqs;           // Define mcqs somewhere above
 
-    await setDoc(doc(db, "classes", "9", "subjects", "chemistry", "chapters", "4"), {
+    await setDoc(doc(db, "classes", "9", "subjects", "computer", "chapters", "12"), {
       shortQuestions,
       Mcqs
     });
@@ -150,16 +134,6 @@ async function uploadData() {
     console.error("Error uploading data:", error);
   }
 };
-
-
-
-
-
-
-
-
-
-
 
 
 
