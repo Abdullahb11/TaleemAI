@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Questions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -31,6 +32,30 @@
   </style>
 </head>
 <body>
+  
+    <!-- Top Bar -->
+    <div class="flex justify-between items-center">
+      <button class="bg-white text-black italic px-6 py-2 rounded-full text-lg font-medium shadow">
+        Taleemai
+      </button>
+
+      <!-- Logo -->
+      <div class="bg-white px-6 py-3 rounded-full shadow">
+        <h1 class="text-3xl font-serif tracking-wide">
+          <span class="text-purple-700 italic font-bold">TALEEM</span>
+          <span class="text-red-500 italic font-bold">BOARD</span>
+        </h1>
+        <div class="w-full h-[2px] bg-black mt-1"></div>
+      </div>
+
+      <button
+      id="signout-btn"
+      class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow transition"
+    >
+      Sign Out
+    </button>
+    </div>
+
   <h1>Questions</h1>
 
   <div class="section">
