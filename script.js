@@ -122,16 +122,12 @@ googleSignin.addEventListener("click", () => {
 
 
 
-
-
-
-
 async function uploadData() {
   try {
     const shortQuestions = sqs;  // Define sqs somewhere above
     const Mcqs = mcqs;           // Define mcqs somewhere above
 
-    await setDoc(doc(db, "classes", "9", "subjects", "computer", "chapters", "12"), {
+    await setDoc(doc(db, "classes", "12", "subjects", "chemistry", "chapters", "1"), {
       shortQuestions,
       Mcqs
     });
@@ -141,8 +137,6 @@ async function uploadData() {
     console.error("Error uploading data:", error);
   }
 };
-
-
 
 
 
@@ -179,16 +173,91 @@ if (window.location.pathname.includes("subjects.html")) {
   });
 }
 
+// Chapter count configuration
+const chapterCounts = {
+  '9': {
+    'chemistry': 8,
+    'biology': 9,
+    'physics': 9,
+    'computer': 12
+  },
+  '10': {
+    'chemistry': 8,
+    'biology': 9,
+    'physics': 9,
+    'computer': 5
+  },
+  '11': {
+    'chemistry': 11,
+    'biology': 12,
+    'physics': 8,
+    'computer': 10
+  },
+  '12': {
+    'chemistry': 16,
+    'biology': 13,
+    'physics': 10,
+    'computer': 14
+  }
+};
+
 // Chapter Selection Handler (chapters.html)
 if (window.location.pathname.includes("chapters.html")) {
-  const chapterBoxes = document.querySelectorAll(".chapter-box");
-  chapterBoxes.forEach(box => {
-    box.addEventListener("click", async () => {
-      const selectedChapter = box.id;
-      localStorage.setItem("selectedChapter", selectedChapter);
-      window.location.href = "questions.html";
-    });
-  });
+  const selectedClass = localStorage.getItem("selectedClass");
+  const selectedSubject = localStorage.getItem("selectedSubject");
+  
+  if (selectedClass && selectedSubject) {
+    const numChapters = chapterCounts[selectedClass][selectedSubject];
+    const chapterContainer = document.querySelector(".grid");
+    
+    // Clear existing chapters
+    chapterContainer.innerHTML = "";
+    
+    // Generate chapters dynamically
+    const colors = [
+      ['indigo', 'indigo'],
+      ['blue', 'blue'],
+      ['cyan', 'cyan'],
+      ['teal', 'teal'],
+      ['emerald', 'emerald'],
+      ['green', 'green'],
+      ['lime', 'lime'],
+      ['yellow', 'yellow'],
+      ['amber', 'amber'],
+      ['orange', 'orange'],
+      ['red', 'red'],
+      ['rose', 'rose'],
+      ['pink', 'pink'],
+      ['fuchsia', 'fuchsia'],
+      ['purple', 'purple'],
+      ['violet', 'violet']
+    ];
+    
+    for (let i = 1; i <= numChapters; i++) {
+      const colorPair = colors[(i - 1) % colors.length];
+      const chapterBox = document.createElement('div');
+      chapterBox.id = i.toString();
+      chapterBox.className = 'chapter-box bg-white rounded-2xl p-1 cursor-pointer';
+      chapterBox.innerHTML = `
+        <div class="bg-gradient-to-br from-${colorPair[0]}-400 to-${colorPair[1]}-500 rounded-xl p-6 h-full">
+          <div class="bg-white/10 rounded-lg p-4 backdrop-blur-sm border border-white/20">
+            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center">
+              <span class="min-[400px]:hidden">Ch</span>
+              <span class="hidden min-[400px]:inline">Chapter</span>
+              &nbsp;${i}
+            </h3>
+          </div>
+        </div>
+      `;
+      
+      chapterBox.addEventListener("click", () => {
+        localStorage.setItem("selectedChapter", i.toString());
+        window.location.href = "questions.html";
+      });
+      
+      chapterContainer.appendChild(chapterBox);
+    }
+  }
 }
 
 // Questions Page Handler (questions.html)
