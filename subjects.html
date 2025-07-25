@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TaleemBoard - Subjects</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {}
+      }
+    }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -17,12 +25,20 @@
       transform: translateY(-5px);
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
+    /* Dark mode styles */
+    .dark body {
+      background: linear-gradient(to bottom right, rgb(15, 23, 42), rgb(88, 28, 135));
+      color: white;
+    }
+    .dark .bg-white {
+      background-color: rgb(30, 41, 59);
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-purple-50 to-pink-100 min-h-screen">
   <div class="container mx-auto px-4 py-8">
     <!-- Top Bar -->
-    <div class="bg-white rounded-2xl shadow-lg p-6 mb-12">
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-12 dark:bg-slate-800">
       <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
         
         <button onclick="history.back()" class="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-2 rounded-full text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
@@ -34,22 +50,36 @@
 
         <div class="text-center">
           <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide mb-2">
-            <span class="text-purple-700 italic">TALEEM</span>
-            <span class="text-red-500 italic">BOARD</span>
+            <span class="text-purple-700 italic dark:text-purple-400">TALEEM</span>
+            <span class="text-red-500 italic dark:text-red-400">BOARD</span>
           </h1>
           <div class="w-full h-[2px] bg-gradient-to-r from-purple-500 to-red-500"></div>
         </div>
 
-        <button id="signout-btn" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-full text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
-          Sign Out
-        </button>
+        <div class="flex gap-4 items-center">
+          <!-- Dark Mode Toggle -->
+          <button id="theme-toggle" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-2 rounded-full shadow-md hover:opacity-90 transition-all duration-300">
+            <!-- Sun icon -->
+            <svg class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <!-- Moon icon -->
+            <svg class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+
+          <button id="signout-btn" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-full text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
+            Sign Out
+          </button>
+        </div>
       </div>
     </div>
 
     <!-- Subject Boxes Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
       <!-- Chemistry -->
-      <div id="chemistry" class="subject-box bg-white rounded-2xl p-1 cursor-pointer">
+      <div id="chemistry" class="subject-box bg-white dark:bg-slate-800 rounded-2xl p-1 cursor-pointer">
         <div class="bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-xl p-8 h-full">
           <div class="bg-white/10 rounded-lg p-6 backdrop-blur-sm border border-white/20">
             <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center">Chemistry</h3>
@@ -58,7 +88,7 @@
       </div>
 
       <!-- Biology -->
-      <div id="biology" class="subject-box bg-white rounded-2xl p-1 cursor-pointer">
+      <div id="biology" class="subject-box bg-white dark:bg-slate-800 rounded-2xl p-1 cursor-pointer">
         <div class="bg-gradient-to-br from-green-400 to-green-500 rounded-xl p-8 h-full">
           <div class="bg-white/10 rounded-lg p-6 backdrop-blur-sm border border-white/20">
             <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center">Biology</h3>
@@ -67,7 +97,7 @@
       </div>
 
       <!-- Computer -->
-      <div id="computer" class="subject-box bg-white rounded-2xl p-1 cursor-pointer">
+      <div id="computer" class="subject-box bg-white dark:bg-slate-800 rounded-2xl p-1 cursor-pointer">
         <div class="bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl p-8 h-full">
           <div class="bg-white/10 rounded-lg p-6 backdrop-blur-sm border border-white/20">
             <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center">Computer</h3>
@@ -76,7 +106,7 @@
       </div>
 
       <!-- Physics -->
-      <div id="physics" class="subject-box bg-white rounded-2xl p-1 cursor-pointer">
+      <div id="physics" class="subject-box bg-white dark:bg-slate-800 rounded-2xl p-1 cursor-pointer">
         <div class="bg-gradient-to-br from-purple-400 to-purple-500 rounded-xl p-8 h-full">
           <div class="bg-white/10 rounded-lg p-6 backdrop-blur-sm border border-white/20">
             <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center">Physics</h3>
@@ -85,6 +115,29 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // Dark mode toggle functionality
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    
+    // Check for saved theme preference, otherwise use system preference
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    // Toggle theme
+    themeToggleBtn.addEventListener('click', () => {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+      }
+    });
+  </script>
 
   <script type="module" src="script.js"></script>
   <script type="module" src="checkauth.js"></script>

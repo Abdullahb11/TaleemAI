@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TaleemBoard - Questions</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {}
+      }
+    }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -17,45 +25,76 @@
       transform: translateY(-2px);
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
+    /* Dark mode styles */
+    .dark body {
+      background: linear-gradient(to bottom right, rgb(15, 23, 42), rgb(88, 28, 135));
+      color: white;
+    }
+    .dark .question-card {
+      background-color: rgb(30, 41, 59);
+      color: white;
+    }
+    .dark .text-gray-800 {
+      color: rgb(226, 232, 240);
+    }
+    .dark .text-gray-600 {
+      color: rgb(203, 213, 225);
+    }
+    .dark .bg-white {
+      background-color: rgb(30, 41, 59);
+    }
   </style>
 </head>
-<body class="bg-gradient-to-br from-purple-50 to-pink-100 min-h-screen">
-  <!-- Include the chatbot HTML -->
-
-  <div class="container mx-auto px-4 py-8">
-    <!-- Top Bar -->
-    <div class="bg-white rounded-2xl shadow-lg p-6 mb-12">
-      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-        <button onclick="history.back()" class="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-2 rounded-full text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
-          Back
-        </button>
-
-        <div class="text-center">
-          <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide mb-2">
-            <span class="text-purple-700 italic">TALEEM</span>
-            <span class="text-red-500 italic">BOARD</span>
-          </h1>
-          <div class="w-full h-[2px] bg-gradient-to-r from-purple-500 to-red-500"></div>
-        </div>
-
-        <div class="flex gap-4">
-          <!-- Add Taleemai button -->
-          <button id="ai" class="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2 rounded-full text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
-            Taleemai
+<body class="bg-gradient-to-br from-purple-50 to-pink-100 min-h-screen pt-32">
+  <!-- Fixed Top Bar -->
+  <div class="fixed top-0 left-0 right-0 z-50 px-4 py-4 bg-white/80 backdrop-blur-lg dark:bg-slate-900/80">
+    <div class="max-w-7xl mx-auto">
+      <div class="bg-white rounded-2xl shadow-lg p-6 dark:bg-slate-800">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <button onclick="history.back()" class="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-2 rounded-full text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
+            Back
           </button>
 
-          <button id="signout-btn" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-full text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
-            Sign Out
-          </button>
+          <div class="text-center">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide mb-2">
+              <span class="text-purple-700 italic dark:text-purple-400">TALEEM</span>
+              <span class="text-red-500 italic dark:text-red-400">BOARD</span>
+            </h1>
+            <div class="w-full h-[2px] bg-gradient-to-r from-purple-500 to-red-500"></div>
+          </div>
+
+          <div class="flex gap-4 items-center">
+            <!-- Dark Mode Toggle -->
+            <button id="theme-toggle" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-2 rounded-full shadow-md hover:opacity-90 transition-all duration-300">
+              <!-- Sun icon -->
+              <svg class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+              <!-- Moon icon -->
+              <svg class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            </button>
+
+            <button id="ai" class="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2 rounded-full text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
+              Taleemai
+            </button>
+
+            <button id="signout-btn" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-full text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
+              Sign Out
+            </button>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
+  <div class="container mx-auto px-4">
     <!-- Questions Content -->
     <div class="max-w-4xl mx-auto space-y-12">
       <!-- Short Questions Section -->
       <div>
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 bg-white inline-block px-8 py-3 rounded-full shadow-md">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 bg-white inline-block px-8 py-3 rounded-full shadow-md dark:bg-slate-800 dark:text-white">
           Short Questions
         </h2>
         <div id="short-questions" class="space-y-6">
@@ -65,7 +104,7 @@
 
       <!-- MCQs Section -->
       <div>
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 bg-white inline-block px-8 py-3 rounded-full shadow-md">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 bg-white inline-block px-8 py-3 rounded-full shadow-md dark:bg-slate-800 dark:text-white">
           Multiple Choice Questions
         </h2>
         <div id="mcqs" class="space-y-6">
@@ -79,6 +118,27 @@
   <script type="module" src="checkauth.js"></script>
 
   <script>
+    // Dark mode toggle functionality
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    
+    // Check for saved theme preference, otherwise use system preference
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    // Toggle theme
+    themeToggleBtn.addEventListener('click', () => {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+      }
+    });
+
     // Function to open chatbot
     function openChatbot() {
       const chatModal = document.querySelector('#chatbot-frame').contentWindow.document.getElementById('chat-modal');
@@ -94,8 +154,8 @@
 
       if (!Array.isArray(questionsArray)) {
         container.innerHTML = `
-          <div class="bg-white rounded-xl p-6 shadow-md">
-            <p class="text-gray-500 text-center">No questions available.</p>
+          <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-md">
+            <p class="text-gray-500 dark:text-gray-400 text-center">No questions available.</p>
           </div>
         `;
         return;
@@ -103,7 +163,7 @@
 
       questionsArray.forEach((q, index) => {
         const questionCard = document.createElement("div");
-        questionCard.className = "question-card bg-white rounded-xl p-6 shadow-md";
+        questionCard.className = "question-card bg-white dark:bg-slate-800 rounded-xl p-6 shadow-md";
 
         if (q.question && q.answer && !q.options) {
           // Short Question
@@ -113,11 +173,11 @@
                 <span class="bg-gradient-to-r from-purple-600 to-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">
                   ${index + 1}
                 </span>
-                <p class="text-gray-800 text-lg font-medium">${q.question}</p>
+                <p class="text-gray-800 dark:text-gray-100 text-lg font-medium">${q.question}</p>
               </div>
               <div class="pl-12">
-                <p class="text-gray-600">
-                  <span class="font-medium text-purple-600">Answer:</span> 
+                <p class="text-gray-600 dark:text-gray-300">
+                  <span class="font-medium text-purple-600 dark:text-purple-400">Answer:</span> 
                   ${q.answer}
                 </p>
               </div>
@@ -127,11 +187,23 @@
           // MCQ
           const optionsHTML = Object.entries(q.options)
             .map(([key, value]) => `
-              <div class="flex items-center gap-3 p-3 rounded-lg ${key.toLowerCase() === q.correctAnswer.toLowerCase() ? 'bg-green-50 border border-green-200' : 'hover:bg-gray-50'}">
-                <span class="w-8 h-8 rounded-full border-2 ${key.toLowerCase() === q.correctAnswer.toLowerCase() ? 'border-green-500 text-green-500' : 'border-gray-300 text-gray-500'} flex items-center justify-center font-medium">
+              <div class="flex items-center gap-3 p-3 rounded-lg ${
+                key.toLowerCase() === q.correctAnswer.toLowerCase() 
+                ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700' 
+                : 'hover:bg-gray-50 dark:hover:bg-slate-700'
+              }">
+                <span class="w-8 h-8 rounded-full border-2 ${
+                  key.toLowerCase() === q.correctAnswer.toLowerCase() 
+                  ? 'border-green-500 text-green-500 dark:border-green-400 dark:text-green-400' 
+                  : 'border-gray-300 text-gray-500 dark:border-gray-600 dark:text-gray-400'
+                } flex items-center justify-center font-medium">
                   ${key.toUpperCase()}
                 </span>
-                <span class="${key.toLowerCase() === q.correctAnswer.toLowerCase() ? 'text-green-700' : 'text-gray-700'}">${value}</span>
+                <span class="${
+                  key.toLowerCase() === q.correctAnswer.toLowerCase() 
+                  ? 'text-green-700 dark:text-green-400' 
+                  : 'text-gray-700 dark:text-gray-300'
+                }">${value}</span>
               </div>
             `).join("");
 
@@ -141,7 +213,7 @@
                 <span class="bg-gradient-to-r from-purple-600 to-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">
                   ${index + 1}
                 </span>
-                <p class="text-gray-800 text-lg font-medium">${q.question}</p>
+                <p class="text-gray-800 dark:text-gray-100 text-lg font-medium">${q.question}</p>
               </div>
               <div class="pl-12 space-y-2">
                 ${optionsHTML}
