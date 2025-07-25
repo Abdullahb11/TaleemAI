@@ -18,6 +18,13 @@ const provider=new GoogleAuthProvider()
 
 const db = getFirestore(app);
 
+// ✅ Taleemai button handler
+const taleemaiBtn = document.getElementById('taleemai-btn');
+if (taleemaiBtn) {
+  taleemaiBtn.addEventListener('click', () => {
+    window.location.href = 'chatbot.html';
+  });
+}
 
 // ✅ Sign-up handler
 const signupForm = document.getElementById("signup-form");
@@ -259,3 +266,8 @@ if (window.location.pathname.includes("questions.html")) {
 
   fetchChapterData();
 }
+
+
+document.getElementById("ai").addEventListener("click", () => {
+  window.location.href = "https://chatbot-rosy-two-23.vercel.app/";
+});
