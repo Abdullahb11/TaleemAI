@@ -25,6 +25,58 @@
       transform: translateY(-2px);
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
+    /* Loading animation */
+    .loader {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      perspective: 800px;
+      margin: 2rem auto;
+    }
+    .loader-inner {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      border-top-color: #9333ea;
+      border-left-color: #ef4444;
+      animation: spin 1s linear infinite;
+    }
+    .loader-inner:before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      border-top-color: #3b82f6;
+      border-left-color: #10b981;
+      animation: spin 0.8s linear reverse infinite;
+    }
+    .loader-inner:after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      border-top-color: #f59e0b;
+      border-left-color: #8b5cf6;
+      animation: spin 1.2s linear infinite;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
     /* Dark mode styles */
     .dark body {
       background: linear-gradient(to bottom right, rgb(15, 23, 42), rgb(88, 28, 135));
@@ -90,8 +142,16 @@
   </div>
 
   <div class="container mx-auto px-4">
+    <!-- Loading Animation -->
+    <div id="loading" class="hidden">
+      <div class="loader">
+        <div class="loader-inner"></div>
+      </div>
+      <p class="text-center text-xl font-medium text-gray-600 dark:text-gray-300">Loading Questions...</p>
+    </div>
+
     <!-- Questions Content -->
-    <div class="max-w-4xl mx-auto space-y-12">
+    <div id="questions-content" class="max-w-4xl mx-auto space-y-12">
       <!-- Short Questions Section -->
       <div>
         <h2 class="text-3xl font-bold text-gray-800 mb-6 bg-white inline-block px-8 py-3 rounded-full shadow-md dark:bg-slate-800 dark:text-white">
@@ -150,80 +210,96 @@
     // Enhanced question display function
     function displayQuestions(questionsArray, containerId) {
       const container = document.getElementById(containerId);
-      container.innerHTML = "";
+      const loading = document.getElementById('loading');
+      const questionsContent = document.getElementById('questions-content');
+      
+      // Show loading animation
+      loading.classList.remove('hidden');
+      questionsContent.classList.add('hidden');
+      
+      // Simulate loading delay for smoother UX
+      setTimeout(() => {
+        container.innerHTML = "";
 
-      if (!Array.isArray(questionsArray)) {
-        container.innerHTML = `
-          <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-md">
-            <p class="text-gray-500 dark:text-gray-400 text-center">No questions available.</p>
-          </div>
-        `;
-        return;
-      }
-
-      questionsArray.forEach((q, index) => {
-        const questionCard = document.createElement("div");
-        questionCard.className = "question-card bg-white dark:bg-slate-800 rounded-xl p-6 shadow-md";
-
-        if (q.question && q.answer && !q.options) {
-          // Short Question
-          questionCard.innerHTML = `
-            <div class="space-y-4">
-              <div class="flex items-start gap-4">
-                <span class="bg-gradient-to-r from-purple-600 to-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">
-                  ${index + 1}
-                </span>
-                <p class="text-gray-800 dark:text-gray-100 text-lg font-medium">${q.question}</p>
-              </div>
-              <div class="pl-12">
-                <p class="text-gray-600 dark:text-gray-300">
-                  <span class="font-medium text-purple-600 dark:text-purple-400">Answer:</span> 
-                  ${q.answer}
-                </p>
-              </div>
+        if (!Array.isArray(questionsArray)) {
+          container.innerHTML = `
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-md">
+              <p class="text-gray-500 dark:text-gray-400 text-center">No questions available.</p>
             </div>
           `;
-        } else if (q.question && q.options && q.correctAnswer) {
-          // MCQ
-          const optionsHTML = Object.entries(q.options)
-            .map(([key, value]) => `
-              <div class="flex items-center gap-3 p-3 rounded-lg ${
-                key.toLowerCase() === q.correctAnswer.toLowerCase() 
-                ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700' 
-                : 'hover:bg-gray-50 dark:hover:bg-slate-700'
-              }">
-                <span class="w-8 h-8 rounded-full border-2 ${
-                  key.toLowerCase() === q.correctAnswer.toLowerCase() 
-                  ? 'border-green-500 text-green-500 dark:border-green-400 dark:text-green-400' 
-                  : 'border-gray-300 text-gray-500 dark:border-gray-600 dark:text-gray-400'
-                } flex items-center justify-center font-medium">
-                  ${key.toUpperCase()}
-                </span>
-                <span class="${
-                  key.toLowerCase() === q.correctAnswer.toLowerCase() 
-                  ? 'text-green-700 dark:text-green-400' 
-                  : 'text-gray-700 dark:text-gray-300'
-                }">${value}</span>
-              </div>
-            `).join("");
-
-          questionCard.innerHTML = `
-            <div class="space-y-4">
-              <div class="flex items-start gap-4">
-                <span class="bg-gradient-to-r from-purple-600 to-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">
-                  ${index + 1}
-                </span>
-                <p class="text-gray-800 dark:text-gray-100 text-lg font-medium">${q.question}</p>
-              </div>
-              <div class="pl-12 space-y-2">
-                ${optionsHTML}
-              </div>
-            </div>
-          `;
+          loading.classList.add('hidden');
+          questionsContent.classList.remove('hidden');
+          return;
         }
 
-        container.appendChild(questionCard);
-      });
+        questionsArray.forEach((q, index) => {
+          const questionCard = document.createElement("div");
+          questionCard.className = "question-card bg-white dark:bg-slate-800 rounded-xl p-6 shadow-md";
+
+          if (q.question && q.answer && !q.options) {
+            // Short Question
+            questionCard.innerHTML = `
+              <div class="space-y-4">
+                <div class="flex items-start gap-4">
+                  <span class="bg-gradient-to-r from-purple-600 to-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">
+                    ${index + 1}
+                  </span>
+                  <p class="text-gray-800 dark:text-gray-100 text-lg font-medium">${q.question}</p>
+                </div>
+                <div class="pl-12">
+                  <p class="text-gray-600 dark:text-gray-300">
+                    <span class="font-medium text-purple-600 dark:text-purple-400">Answer:</span> 
+                    ${q.answer}
+                  </p>
+                </div>
+              </div>
+            `;
+          } else if (q.question && q.options && q.correctAnswer) {
+            // MCQ
+            const optionsHTML = Object.entries(q.options)
+              .map(([key, value]) => `
+                <div class="flex items-center gap-3 p-3 rounded-lg ${
+                  key.toLowerCase() === q.correctAnswer.toLowerCase() 
+                  ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700' 
+                  : 'hover:bg-gray-50 dark:hover:bg-slate-700'
+                }">
+                  <span class="w-8 h-8 rounded-full border-2 ${
+                    key.toLowerCase() === q.correctAnswer.toLowerCase() 
+                    ? 'border-green-500 text-green-500 dark:border-green-400 dark:text-green-400' 
+                    : 'border-gray-300 text-gray-500 dark:border-gray-600 dark:text-gray-400'
+                  } flex items-center justify-center font-medium">
+                    ${key.toUpperCase()}
+                  </span>
+                  <span class="${
+                    key.toLowerCase() === q.correctAnswer.toLowerCase() 
+                    ? 'text-green-700 dark:text-green-400' 
+                    : 'text-gray-700 dark:text-gray-300'
+                  }">${value}</span>
+                </div>
+              `).join("");
+
+            questionCard.innerHTML = `
+              <div class="space-y-4">
+                <div class="flex items-start gap-4">
+                  <span class="bg-gradient-to-r from-purple-600 to-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">
+                    ${index + 1}
+                  </span>
+                  <p class="text-gray-800 dark:text-gray-100 text-lg font-medium">${q.question}</p>
+                </div>
+                <div class="pl-12 space-y-2">
+                  ${optionsHTML}
+                </div>
+              </div>
+            `;
+          }
+
+          container.appendChild(questionCard);
+        });
+
+        // Hide loading animation and show content
+        loading.classList.add('hidden');
+        questionsContent.classList.remove('hidden');
+      }, 800); // Add a slight delay for smoother transition
     }
 
     // The existing fetchChapterData function will use this enhanced display function
