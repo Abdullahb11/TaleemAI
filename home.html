@@ -41,16 +41,9 @@
     }
     @media (max-width: 900px) {
       .header-buttons {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-      }
-      .header-buttons-group {
-        display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 0.5rem;
-        width: 100%;
       }
     }
     @media (max-width: 640px) {
@@ -78,42 +71,10 @@
   <div class="container mx-auto px-4 py-8">
     <!-- Top Bar -->
     <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 mb-12 dark:bg-slate-800 header-container">
-      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-        <div class="header-buttons flex flex-wrap justify-center sm:justify-start gap-2">
-          <div class="header-buttons-group">
-            <button id="ai" class="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-4 sm:px-6 py-2 rounded-full text-base sm:text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
-              Taleemai
-            </button>
-          </div>
-
-          <div class="header-buttons-group">
-            <!-- About Button -->
-            <a href="about.html" class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 sm:px-6 py-2 rounded-full text-base sm:text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
-              About
-            </a>
-
-            <!-- Feedback Button -->
-            <a href="feedback.html" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 sm:px-6 py-2 rounded-full text-base sm:text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
-              Feedback
-            </a>
-            
-            <!-- Dark Mode Toggle -->
-            <button id="theme-toggle" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-2 rounded-full shadow-md hover:opacity-90 transition-all duration-300">
-              <!-- Sun icon -->
-              <svg class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-              <!-- Moon icon -->
-              <svg class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-              </svg>
-            </button>
-
-            <button id="signout-btn" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 sm:px-6 py-2 rounded-full text-base sm:text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
-              Sign Out
-            </button>
-          </div>
-        </div>
+      <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
+        <button id="ai" class="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-4 sm:px-6 py-2 rounded-full text-base sm:text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
+          Taleemai
+        </button>
 
         <div class="text-center flex-shrink-0">
           <h1 class="header-title font-bold tracking-wide mb-2">
@@ -121,6 +82,34 @@
             <span class="text-red-500 italic dark:text-red-400">BOARD</span>
           </h1>
           <div class="w-full h-[2px] bg-gradient-to-r from-purple-500 to-red-500"></div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center lg:justify-end gap-2">
+          <!-- About Button -->
+          <a href="about.html" class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 sm:px-6 py-2 rounded-full text-base sm:text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
+            About
+          </a>
+
+          <!-- Feedback Button -->
+          <a href="feedback.html" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 sm:px-6 py-2 rounded-full text-base sm:text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
+            Feedback
+          </a>
+          
+          <!-- Dark Mode Toggle -->
+          <button id="theme-toggle" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-2 rounded-full shadow-md hover:opacity-90 transition-all duration-300">
+            <!-- Sun icon -->
+            <svg class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <!-- Moon icon -->
+            <svg class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+
+          <button id="signout-btn" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 sm:px-6 py-2 rounded-full text-base sm:text-lg font-medium shadow-md hover:opacity-90 transition-all duration-300">
+            Sign Out
+          </button>
         </div>
       </div>
     </div>
