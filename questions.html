@@ -116,6 +116,11 @@
     .dark .bg-white {
       background-color: rgb(30, 41, 59);
     }
+    @media (min-width: 650px) and (max-width: 1100px) {
+      #sq {
+        margin-top: -20px !important;
+      }
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-purple-50 to-pink-100 min-h-screen pt-32">
@@ -140,6 +145,20 @@
             </h1>
             <div class="w-full h-[2px] bg-gradient-to-r from-purple-500 to-red-500"></div>
           </div>
+
+          <div class="flex items-center gap-2">
+            <!-- Dark Mode Toggle -->
+            <button id="theme-toggle" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-2 rounded-full shadow-md hover:opacity-90 transition-all duration-300">
+              <!-- Sun icon -->
+              <svg class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+              <!-- Moon icon -->
+              <svg class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -159,7 +178,7 @@
     <div id="questions-content" class="max-w-4xl mx-auto space-y-12">
       <!-- Short Questions Section -->
       <div>
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 bg-white inline-block px-8 py-3 rounded-full shadow-md dark:bg-slate-800 dark:text-white">
+        <h2 id="sq" class="mt-[50px] text-3xl font-bold text-gray-800 mb-6 bg-white inline-block px-8 py-3 rounded-full shadow-md dark:bg-slate-800 dark:text-white">
           Short Questions
         </h2>
         <div id="short-questions" class="space-y-6">
