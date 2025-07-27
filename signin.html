@@ -10,9 +10,31 @@
     body {
       font-family: 'Poppins', sans-serif;
     }
+    .warning-banner {
+      animation: slideDown 0.3s ease-out;
+    }
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-purple-50 to-pink-100 min-h-screen flex items-center justify-center p-4">
+   <!-- Warning Banner -->
+   <div class="warning-banner fixed top-0 left-0 right-0 z-50 bg-amber-500/90 text-white py-2 px-4 text-sm">
+    <div class="max-w-3xl mx-auto flex items-center justify-center gap-2">
+      <span>⚠️</span>
+      <p class="text-center">
+        Google Sign-In may not work in in-app browsers. Please use Chrome, Safari, or your phone's browser.
+      </p>
+    </div>
+  </div>
   <div class="w-full max-w-md">
     <!-- Logo Section -->
     <div class="text-center mb-8">
