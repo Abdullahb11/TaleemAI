@@ -231,10 +231,9 @@ if (window.location.pathname.includes("chapters.html")) {
       chapterBox.innerHTML = `
         <div class="bg-gradient-to-br from-${colorPair[0]}-400 to-${colorPair[1]}-500 rounded-xl p-6 h-full">
           <div class="bg-white/10 rounded-lg p-4 backdrop-blur-sm border border-white/20">
-            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center">
-              <span class="min-[400px]:hidden">Ch</span>
-              <span class="hidden min-[400px]:inline">Chapter</span>
-              &nbsp;${i}
+            <h3 class="font-bold text-white text-center">
+              <span class="text-base sm:text-lg md:text-xl lg:text-2xl">Chapter</span>
+              <span class="text-xl sm:text-2xl md:text-3xl lg:text-4xl ml-1">${i}</span>
             </h3>
           </div>
         </div>
